@@ -17,6 +17,7 @@ mongoose
     console.log(err);
   });
 
+app.use(methodOverride("_method"));
 app.use(express.urlencoded({ extended: true }));
 
 app.set("views", path.join(__dirname, "views"));
@@ -49,7 +50,14 @@ app.get("/products/:id/edit", async (req, res) => {
   res.render("products/edit", { product });
 });
 
-app.put("/prodcuts/:id", async (req, res) => {});
+app.put("/products/:id", async (req, res) => {
+  const { id } = req.params;
+  const product = await Product.findByIdAndUpdate(id, req.body, {
+    runValidators: true,
+    new: true,
+  });
+  res.redirect(`/products/${product._id}`);
+});
 
 app.listen(5000, () => {
   console.log("app is listening on port 5000");
