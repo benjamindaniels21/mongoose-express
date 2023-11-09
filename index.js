@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const path = require("path");
+const methodOverride = require("method-override");
 
 const mongoose = require("mongoose");
 
@@ -33,8 +34,7 @@ app.get("/products/new", (req, res) => {
 app.post("/products", async (req, res) => {
   const newProduct = new Product(req.body);
   await newProduct.save();
-  console.log(newProduct);
-  res.redirect("/products");
+  res.redirect(`/products/${newProduct._id}`);
 });
 
 app.get("/products/:id", async (req, res) => {
@@ -42,6 +42,14 @@ app.get("/products/:id", async (req, res) => {
   const product = await Product.findById(id);
   res.render("products/show", { product });
 });
+
+app.get("/products/:id/edit", async (req, res) => {
+  const { id } = req.params;
+  const product = await Product.findById(id);
+  res.render("products/edit", { product });
+});
+
+app.put("/prodcuts/:id", async (req, res) => {});
 
 app.listen(5000, () => {
   console.log("app is listening on port 5000");
