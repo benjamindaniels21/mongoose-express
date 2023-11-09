@@ -1,0 +1,17 @@
+body{
+  background: url('./more-leaves-on-green\ \(1\).png')
+}
+
+.card-body{
+  background-color: #05386B;
+  color: #EDf5e1;
+}
+
+.card-color{
+    background-color: #05386B;
+}
+
+.title-text{
+  font-family: 'Dancing Script', cursive;
+  font-size: 4.5rem;
+}
