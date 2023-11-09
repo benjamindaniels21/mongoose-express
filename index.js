@@ -17,6 +17,7 @@ mongoose
     console.log(err);
   });
 
+app.use("/public", express.static("public"));
 app.use(methodOverride("_method"));
 app.use(express.urlencoded({ extended: true }));
 
