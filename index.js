@@ -23,13 +23,15 @@ app.use(express.urlencoded({ extended: true }));
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
+const categories = ["fruit", "vegetable", "dairy"];
+
 app.get("/products", async (req, res) => {
   const products = await Product.find({});
   res.render("products/index", { products });
 });
 
 app.get("/products/new", (req, res) => {
-  res.render("products/new");
+  res.render("products/new", { categories });
 });
 
 app.post("/products", async (req, res) => {
