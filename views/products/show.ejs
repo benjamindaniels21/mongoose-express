@@ -11,8 +11,16 @@
     <li>Price: $<%=product.price%></li>
     <li>Category: <%=product.category%></li>
   </ul>
-    <a href="/products/">All products</a>
+  <br>
+  <img src="<%=product.imageURL%>" alt="" height="300" width="300">
+  <br>
+  <a href="/products/">All products</a>
     <br>
     <a href="/products/<%=product._id%>/edit">Edit Product</a>
+    
+    <form action="/products/<%=product._id%>/?_method=DELETE" method="POST">
+      <button>Delete</button>
+    </form>
+    
 </body>
 </html>

@@ -10,6 +10,9 @@ const productSchema = new mongoose.Schema({
     required: true,
     min: 0,
   },
+  imageURL: {
+    type: String,
+  },
   category: {
     type: String,
     lowercase: true,
